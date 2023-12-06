@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DuckTales"
 include(":app")
+include(":theme")
