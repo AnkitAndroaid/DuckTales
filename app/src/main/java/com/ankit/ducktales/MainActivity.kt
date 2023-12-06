@@ -10,19 +10,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ankit.ducktales.ui.theme.DuckTalesTheme
+import com.ankit.ducktales.theme.DuckTalesTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DuckTalesTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+                Surface (modifier = Modifier.fillMaxSize()){
+                    Text(text = "What is up??")
                 }
             }
         }
@@ -40,7 +36,5 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    DuckTalesTheme {
-        Greeting("Android")
-    }
+
 }
