@@ -5,25 +5,25 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
-//import com.diffplug.gradle.spotless.JavaExtension
+import com.diffplug.gradle.spotless.JavaExtension
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.ktlint) apply false
-//    alias(libs.plugins.spotless) apply false
+    alias(libs.plugins.spotless) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.hilt) apply false
 }
 
-//buildscript {
-//    dependencies {
-//        classpath(libs.spotless)
-//    }
-//}
+buildscript {
+    dependencies {
+        classpath(libs.spotless)
+    }
+}
 
 
 fun BaseExtension.defaultConfig() {
@@ -87,9 +87,9 @@ fun PluginContainer.applyDefaultConfig(project: Project) {
 
 subprojects {
     project.plugins.applyDefaultConfig(project)
-//    afterEvaluate {
-//      project.apply("${project.rootDir}/spotless.gradle")
-//    }
+    afterEvaluate {
+      project.apply("${project.rootDir}/spotless.gradle")
+    }
 
     tasks.withType<KotlinCompile> {
         compilerOptions {
