@@ -1,4 +1,4 @@
-package com.ankit.ducktales
+package com.ankit.ducktales.features.auth
 
 import org.junit.Test
 

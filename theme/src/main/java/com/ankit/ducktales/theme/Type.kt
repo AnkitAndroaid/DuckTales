@@ -8,7 +8,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
-import com.ankit.ducktales.theme.R
 
 private val poppins = FontFamily(
     Font(R.font.poppins_regular),
