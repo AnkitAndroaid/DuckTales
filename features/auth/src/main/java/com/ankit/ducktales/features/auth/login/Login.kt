@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ankit.ducktales.features.auth.R
 import com.ankit.ducktales.theme.DuckTalesTheme
 import com.ankit.ducktales.theme.components.AppTextField
@@ -30,12 +31,18 @@ import com.ankit.ducktales.theme.components.DuckTalesPreview
 
 
 @Composable
-fun LoginScreen() {
-    Login()
+fun LoginScreen(viewModel: LoginViewModel) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    Login(
+        uiState = uiState.value,
+        onEvent = {
+            viewModel.onEvent(it)
+        }
+    )
 }
 
 @Composable
-fun Login() {
+fun Login(uiState: LoginUiState,onEvent: (LoginUiEvent)->Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,19 +60,24 @@ fun Login() {
         )
 
         // Edit Text for Login Id
-        AppTextField(value = "91ankitgupta@gmail.com", label = R.string.email,
-            hint = "yourname@domain.com",
+        AppTextField(
+            value = uiState.email,
+            label = R.string.email,
+            hint = "ankit@mymail.com",
             leadingIcon = Icons.Filled.Email,
             imeAction = ImeAction.Next, onValueChanged = {
-
+                onEvent(LoginUiEvent.EmailChanged(it))
             })
 
         // Edit Text for password
-        AppTextField(value = "1234@5", label = R.string.password,
+        AppTextField(
+            value = uiState.password,
+            label = R.string.password,
             hint = "password",
+            isPasswordField = true,
             leadingIcon = Icons.Filled.Lock,
             imeAction = ImeAction.Done, onValueChanged = {
-
+                onEvent(LoginUiEvent.PasswordChanged(it))
             })
 
         // Forgot password
@@ -105,7 +117,10 @@ private fun LoginPreview() {
 
     DuckTalesTheme {
         Surface() {
-            Login()
+            Login(
+                uiState = LoginUiState(),
+                onEvent = {}
+            )
         }
     }
 }
