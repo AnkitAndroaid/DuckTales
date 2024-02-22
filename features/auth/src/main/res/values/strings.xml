@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">Email\n</string>
+    <string name="password">Password\n</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="click_here_to_reset">Click here to reset\n</string>
+</resources>
